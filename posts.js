@@ -40,8 +40,7 @@ var Posts = React.createClass({
 var styles = StyleSheet.create({
 	row: {
 		flex: 1,
-		// justifyContent: 'center',
-		// alignItems: 'center',
+		padding: 10,
 		backgroundColor: '#ffffff',
 	}
 });
