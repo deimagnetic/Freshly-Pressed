@@ -20,41 +20,35 @@ var FreshlyPressed = React.createClass({
 			rowHasChanged: (r1, r2) => r1 !== r2
 		});
 		return {
-			dataSource: ds.cloneWithRows(data.posts),
+			dataSource: ds.cloneWithRows( data.posts ),
 		};
 	},
 
+    renderRow: function( post ) {
+        return (
+            <View style={ styles.row } >
+                <Text>{ post.title }</Text>
+            </View>
+        )
+    },
+
 	render: function() {
-		return ( < ListView dataSource = {
-				this.state.dataSource
-			}
-			renderRow = {
-				(rowData) => < Text style = {
-					styles.container
-				} > {
-					rowData.title
-				} < /Text>} / >
-			);
-		},
-	});
+		return (
+            <ListView
+                dataSource = { this.state.dataSource }
+    			renderRow = { this.renderRow }
+            />
+		);
+	},
+});
 
 var styles = StyleSheet.create({
-	container: {
+	row: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
-	},
-	welcome: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
-	},
+		// justifyContent: 'center',
+		// alignItems: 'center',
+		backgroundColor: '#ffffff',
+	}
 });
 
 AppRegistry.registerComponent('FreshlyPressed', () => FreshlyPressed);
