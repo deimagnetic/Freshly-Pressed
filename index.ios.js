@@ -21,9 +21,21 @@ var FreshlyPressed = React.createClass({
 
 	render: function() {
 		return (
-			<Posts />
+            <NavigatorIOS
+                initialRoute={{
+                    component: Posts,
+                    title: 'Freshly Pressed'
+                }}
+                style={ styles.container }
+            />
 		);
 	},
 });
+
+var styles = {
+    container: {
+        flex: 1
+    }
+};
 
 AppRegistry.registerComponent( 'FreshlyPressed', () => FreshlyPressed );
