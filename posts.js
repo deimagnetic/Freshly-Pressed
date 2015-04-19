@@ -14,7 +14,7 @@ var PostDetail = require( './post-detail' );
 var Posts = React.createClass({
 	getInitialState: function() {
 		var ds = new ListView.DataSource({
-			rowHasChanged: (r1, r2) => r1 !== r2
+			rowHasChanged: (r1, r2) => r1.ID !== r2.ID
 		});
 		return {
 			dataSource: ds.cloneWithRows( data.posts ),
