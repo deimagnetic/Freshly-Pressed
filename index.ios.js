@@ -12,7 +12,7 @@ var {
 	StyleSheet,
 	Text,
 	View,
-    NavigatorIOS
+	NavigatorIOS
 } = React;
 
 var Posts = require( './posts' );
@@ -21,21 +21,21 @@ var FreshlyPressed = React.createClass({
 
 	render: function() {
 		return (
-            <NavigatorIOS
-                initialRoute={{
-                    component: Posts,
-                    title: 'Freshly Pressed'
-                }}
-                style={ styles.container }
-            />
+			<NavigatorIOS
+				initialRoute={{
+					component: Posts,
+					title: 'Freshly Pressed'
+				}}
+				style={ styles.container }
+			/>
 		);
 	},
 });
 
 var styles = {
-    container: {
-        flex: 1
-    }
+	container: {
+		flex: 1
+	}
 };
 
 AppRegistry.registerComponent( 'FreshlyPressed', () => FreshlyPressed );
