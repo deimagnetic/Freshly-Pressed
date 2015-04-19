@@ -30,7 +30,8 @@ var postDetail = React.createClass( {
 
 var styles = {
 	featured: {
-
+		width: 320,
+		height: 200
 	}
 };
 

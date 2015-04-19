@@ -22,9 +22,6 @@ var Posts = React.createClass({
 	},
 
 	pressRow: function( post ) {
-		console.log( this.props );
-		console.log( post );
-
 		this.props.navigator.push( {
 			title: post.title,
 			component: PostDetail,
