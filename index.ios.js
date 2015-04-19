@@ -24,20 +24,20 @@ var FreshlyPressed = React.createClass({
 		};
 	},
 
-    renderRow: function( post ) {
-        return (
-            <View style={ styles.row } >
-                <Text>{ post.title }</Text>
-            </View>
-        )
-    },
+	renderRow: function( post ) {
+		return (
+			<View style={ styles.row } >
+				<Text>{ post.title }</Text>
+			</View>
+		)
+	},
 
 	render: function() {
 		return (
-            <ListView
-                dataSource = { this.state.dataSource }
-    			renderRow = { this.renderRow }
-            />
+			<ListView
+				dataSource = { this.state.dataSource }
+				renderRow = { this.renderRow }
+			/>
 		);
 	},
 });
