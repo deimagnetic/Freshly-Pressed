@@ -2,12 +2,14 @@ var React = require('react-native'),
 	data = require('./data');
 
 var {
-	AppRegistry,
 	StyleSheet,
 	ListView,
 	Text,
-	View
+	View,
+	TouchableHighlight
 } = React;
+
+var PostDetail = require( './post-detail' );
 
 var Posts = React.createClass({
 	getInitialState: function() {
@@ -19,11 +21,27 @@ var Posts = React.createClass({
 		};
 	},
 
+	pressRow: function( post ) {
+		console.log( this.props );
+		console.log( post );
+
+		this.props.navigator.push( {
+			title: post.title,
+			component: PostDetail,
+			backButtonTitle: 'Posts',
+			passProps: {
+				post: post
+			}
+		} );
+	},
+
 	renderRow: function( post ) {
 		return (
-			<View style={ styles.row } >
-				<Text>{ post.title }</Text>
-			</View>
+			<TouchableHighlight onPress={ () => this.pressRow( post ) } >
+				<View style={ styles.row } >
+					<Text>{ post.title }</Text>
+				</View>
+			</TouchableHighlight>
 		)
 	},
 
