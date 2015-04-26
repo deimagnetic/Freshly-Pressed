@@ -22,10 +22,10 @@ var FreshlyPressed = React.createClass({
 	render: function() {
 		return (
 			<NavigatorIOS
-				initialRoute={{
+				initialRoute={ {
 					component: Posts,
 					title: 'Freshly Pressed'
-				}}
+				} }
 				style={ styles.container }
 			/>
 		);

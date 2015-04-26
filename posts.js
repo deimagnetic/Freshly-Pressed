@@ -14,8 +14,9 @@ var PostDetail = require( './post-detail' );
 var Posts = React.createClass({
 	getInitialState: function() {
 		var ds = new ListView.DataSource({
-			rowHasChanged: (r1, r2) => r1.ID !== r2.ID
+			rowHasChanged: ( r1, r2 ) => r1.ID !== r2.ID
 		});
+
 		return {
 			dataSource: ds.cloneWithRows( data.posts ),
 		};
@@ -45,8 +46,8 @@ var Posts = React.createClass({
 	render: function() {
 		return (
 			<ListView
-				dataSource = { this.state.dataSource }
-				renderRow = { this.renderRow }
+				dataSource={ this.state.dataSource }
+				renderRow={ this.renderRow }
 			/>
 		);
 	},
@@ -56,7 +57,7 @@ var styles = StyleSheet.create({
 	row: {
 		flex: 1,
 		padding: 10,
-		backgroundColor: '#ffffff',
+		backgroundColor: '#ffffff'
 	}
 });
 
