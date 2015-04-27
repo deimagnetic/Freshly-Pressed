@@ -6,7 +6,6 @@
 
 var React = require('react-native'),
 	data = require('./data');
-
 var {
 	AppRegistry,
 	StyleSheet,

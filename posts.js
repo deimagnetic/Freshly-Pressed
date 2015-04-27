@@ -13,12 +13,6 @@ var {
 
 var PostDetail = require( './post-detail' );
 
-function htmlDecode(input){
-	var e = document.createElement('div');
-	e.innerHTML = input;
-	return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-}
-
 var Posts = React.createClass( {
 	getInitialState: function() {
 		var ds = new ListView.DataSource({
