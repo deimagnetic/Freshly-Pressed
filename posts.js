@@ -1,6 +1,7 @@
 var React = require('react-native'),
 	data = require('./data'),
-	he = require( 'he' );
+	he = require( 'he' ),
+	request = require( 'superagent' );
 
 var {
 	StyleSheet,
@@ -13,11 +14,19 @@ var {
 
 var PostDetail = require( './post-detail' );
 
+function fetchPosts() {
+	request( 'https://public-api.wordpress.com/rest/v1.1/freshly-pressed/', function( error, response, body ) {
+		console.log( response );
+	} );
+}
+
 var Posts = React.createClass( {
 	getInitialState: function() {
 		var ds = new ListView.DataSource({
 			rowHasChanged: ( r1, r2 ) => r1.ID !== r2.ID
 		});
+
+		fetchPosts();
 
 		return {
 			dataSource: ds.cloneWithRows( data.posts ),
