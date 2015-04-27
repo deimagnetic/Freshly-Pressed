@@ -1,7 +1,8 @@
 var React = require('react-native'),
 	data = require('./data'),
 	he = require( 'he' ),
-	request = require( 'superagent' );
+	request = require( 'superagent' ),
+	_ = require( 'lodash' );
 
 var {
 	StyleSheet,
@@ -14,26 +15,35 @@ var {
 
 var PostDetail = require( './post-detail' );
 
-var api = {
-	currentPage: 1,
-	fetchPosts: function( callback ) {
-		request( 'https://public-api.wordpress.com/rest/v1.1/freshly-pressed/' )
-			.end( function( error, response ) {
-				var posts = JSON.parse( response.text ).posts;
+var dataSource = new ListView.DataSource({
+	rowHasChanged: ( r1, r2 ) => r1.ID !== r2.ID
+});
 
-			} );
-	}
-};
+var lastPostDate;
 
 var Posts = React.createClass( {
 	getInitialState: function() {
-		var ds = new ListView.DataSource({
-			rowHasChanged: ( r1, r2 ) => r1.ID !== r2.ID
-		});
-
 		return {
-			dataSource: ds.cloneWithRows( data.posts ),
+			dataSource: dataSource.cloneWithRows( [] ),
 		};
+	},
+
+	componentDidMount: function() {
+		this.fetchPosts();
+	},
+
+	posts: [],
+
+	fetchPosts: function() {
+		request( 'https://public-api.wordpress.com/rest/v1.1/freshly-pressed/' )
+			.query( { before: lastPostDate } )
+			.end( function( error, response ) {
+				var posts = JSON.parse( response.text ).posts;
+				lastPostDate = _.last( posts ).date;
+
+				_.merge( this.posts, posts );
+				this.setState( { dataSource: dataSource.cloneWithRows( this.posts ) } );
+			}.bind( this ) );
 	},
 
 	pressRow: function( post ) {
