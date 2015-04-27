@@ -32,7 +32,7 @@ var Posts = React.createClass( {
 
 	pressRow: function( post ) {
 		this.props.navigator.push( {
-			title: post.title,
+			title: he.decode( post.title ),
 			component: PostDetail,
 			backButtonTitle: 'Posts',
 			passProps: {
@@ -89,7 +89,8 @@ var styles = StyleSheet.create( {
 		flex: 0.75,
 		justifyContent: 'center',
 		alignItems: 'center',
-		paddingLeft: 10
+		paddingLeft: 10,
+		textAlign: 'auto'
 	}
 } );
 
