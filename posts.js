@@ -36,12 +36,15 @@ var Posts = React.createClass( {
 
 	fetchPosts: function() {
 		request( 'https://public-api.wordpress.com/rest/v1.1/freshly-pressed/' )
-			.query( { before: lastPostDate } )
+			.query( { before: lastPostDate, number: 20 } )
 			.end( function( error, response ) {
-				var posts = JSON.parse( response.text ).posts;
+				var posts = JSON.parse( response.text ).posts,
+					temp = this.posts.concat( posts );
+
 				lastPostDate = _.last( posts ).date;
 
-				_.merge( this.posts, posts );
+				this.posts = temp;
+
 				this.setState( { dataSource: dataSource.cloneWithRows( this.posts ) } );
 			}.bind( this ) );
 	},
@@ -83,6 +86,8 @@ var Posts = React.createClass( {
 			<ListView
 				dataSource={ this.state.dataSource }
 				renderRow={ this.renderRow }
+				onEndReached={ this.fetchPosts }
+				onEndReachedThreshold={ 10 }
 			/>
 		);
 	},
