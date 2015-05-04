@@ -87,7 +87,7 @@ var Posts = React.createClass( {
 				dataSource={ this.state.dataSource }
 				renderRow={ this.renderRow }
 				onEndReached={ this.fetchPosts }
-				onEndReachedThreshold={ 10 }
+				onEndReachedThreshold={ 400 }
 			/>
 		);
 	},
